@@ -43,9 +43,9 @@ services:
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
-      - './etc-pihole:/etc/pihole'
+      - ./etc-pihole:/etc/pihole
       # Uncomment the below if you have custom dnsmasq config files that you want to persist. Not needed for most starting fresh with Pi-hole v6. If you're upgrading from v5 you and have used this directory before, you should keep it en>
-      #- './etc-dnsmasq.d:/etc/dnsmasq.d'
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
     cap_add:
       # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
       # Required if you are using Pi-hole as your DHCP server, else not needed
@@ -69,6 +69,7 @@ services:
         environment:
             - TS_AUTHKEY=${TSKEY}
         image: tailscale/tailscale
+        restart: unless-stopped
 EOF
 )
 echo "Atualizando o sistema."
@@ -78,12 +79,12 @@ echo "Instalandos os pacotes."
 apt install git wget curl ssh docker docker-compose
 
 echo "Criando os diretórios e arquivos."
-mkdir $HOME/Docker $HOME/Docker/Piscale
+mkdir ~/Docker ~/Docker/Piscale
 
-echo -e "$all_in" > $HOME/Docker/Piscale/docker-compose.yaml
+echo -e "$all_in" > ~/Docker/Piscale/docker-compose.yaml
 
 echo "Subindo Container"
-cd $HOME/Docker/Piscale
+cd ~/Docker/Piscale
 docker-compose up -d
 cd $HOME
 
