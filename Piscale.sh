@@ -12,12 +12,15 @@ read PassPI
 echo "Qual o Timezone do Pihole?"
 read Timezone
 
+Host=$(hostname)
+
 all_in=$(cat <<EOF
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    hostname: "${Host}"
     ports:
       # DNS Ports
       - "53:53/tcp"
