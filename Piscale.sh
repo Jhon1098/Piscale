@@ -8,6 +8,10 @@ read TSKEY
 echo "Senha do Pihole"
 read PassPI
 
+# Definindo o Timezone
+echo "Qual o Timezone do Pihole?"
+read Timezone
+
 all_in=$(cat <<EOF
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
@@ -28,7 +32,7 @@ services:
       #- "123:123/udp"
     environment:
       # Set the appropriate timezone for your location (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g:
-      TZ: 'America/Cuiaba'
+      TZ: "{$Timezone}"
       # Set a password to access the web interface. Not setting one will result in a random password being assigned
       FTLCONF_webserver_api_password: "${PassPI}"
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
@@ -49,7 +53,6 @@ services:
       - SYS_NICE
     restart: unless-stopped
 
-name: Tailscale
 services:
     tailscale:
         container_name: tailscaled
