@@ -69,7 +69,7 @@ echo "Atualizando o sistema."
 apt update && apt full-upgrade -y
 
 echo "Instalandos os pacotes."
-apt install git wget curl openssh docker docker-compose
+apt install git wget curl ssh docker docker-compose
 
 echo "Criando os diretórios e arquivos."
 mkdir Docker Docker/Piscale
