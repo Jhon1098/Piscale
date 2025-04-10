@@ -72,12 +72,12 @@ echo "Instalandos os pacotes."
 apt install git wget curl ssh docker docker-compose
 
 echo "Criando os diretórios e arquivos."
-mkdir Docker Docker/Piscale
+mkdir $HOME/Docker $HOME/Docker/Piscale
 
-echo -e "$all_in" > /Docker/Piscale/docker-compose.yaml
+echo -e "$all_in" > $HOME/Docker/Piscale/docker-compose.yaml
 
 echo "Subindo Container"
-cd /Docker/Piscale
+cd $HOME/Docker/Piscale
 docker-compose up -d
 cd $HOME
 
