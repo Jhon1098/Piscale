@@ -15,7 +15,6 @@ read Timezone
 Host=$(hostname)
 
 all_in=$(cat <<EOF
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
     pihole:
       container_name: pihole
@@ -83,7 +82,7 @@ mkdir ./Docker ./Docker/Piscale
 echo -e "$all_in" > ./Docker/Piscale/docker-compose.yaml
 
 echo "Subindo Container"
-cd ./Docker/Piscale
+cd ./Docker/Piscale/
 docker-compose up -d
 cd $HOME
 
