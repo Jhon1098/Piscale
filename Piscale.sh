@@ -86,6 +86,8 @@ cd ./Docker/Piscale/
 docker-compose up -d
 cd $HOME
 
+sleep 10
+
 # Executa o comando "tailscale up" dentro do container e captura a saída
 output=$(docker exec -i tailscaled tailscale up)
 
