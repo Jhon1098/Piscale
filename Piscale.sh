@@ -58,7 +58,7 @@ services:
     tailscale:
       container_name: tailscaled
       volumes:
-          - ./var/lib:/var/lib
+          - ./.tailscale_conf:/var/lib/tailscale
           - ./dev/net/tun:/dev/net/tun
       network_mode: host
       cap_add:
