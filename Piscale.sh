@@ -64,7 +64,7 @@ services:
       cap_add:
           - NET_ADMIN
           - NET_RAW
-      environment:
+#      environment:
 #          - TS_AUTHKEY=${TSKEY}
       image: tailscale/tailscale
       restart: unless-stopped
